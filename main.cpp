@@ -128,8 +128,8 @@ int main(){
     //Ejercicio 9
     int anio;
     cout<<"Ejercicio 9"<<endl;
-    cout<<"Ingrese un año : ";cin>>anio;
-    if(!(anio%4)||!(anio%400))
+    cout<<"Ingrese un aÃ±o : ";cin>>anio;
+    if(!(anio%4)||!(anio%400)&&(anio%100))
         cout<<"El anio es bisiesto"<<endl;
     else{
         cout<<"El anio no es bisiesto"<<endl;
