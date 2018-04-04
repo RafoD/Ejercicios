@@ -92,10 +92,7 @@ int main(){
         contador = 0;
         ++numero;
         for(int i=2;i<numero;i++){
-            if(!(numero%i)){
-                contador++;
-                break;
-            }
+            contador = !(numero%i)? contador++ : 0;
         }
         if(!contador){
             cout<<numero<<" ";
