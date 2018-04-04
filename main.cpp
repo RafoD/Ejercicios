@@ -84,18 +84,23 @@ int main(){
 
     //Ejercicio 6
     cout<<"Ejercicio 6"<<endl;
-    cout<<"Ingrese un numero: "; cin>>numero;
-    for(int i=2; i<numero; i++){
+    int n;
+    cout<<"Ingrese un numero: "; cin>>n;
+    int c=0;
+    numero = 1;
+    while(c<n){
         contador = 0;
-        tmp = 2;
-        while((contador == 0)&&(tmp<i)){
-        if(!(i%tmp))
-            contador++;
-        tmp++;
-
+        ++numero;
+        for(int i=2;i<numero;i++){
+            if(!(numero%i)){
+                contador++;
+                break;
+            }
         }
-        if(!contador)
-        cout<<i<<" ";
+        if(!contador){
+            cout<<numero<<" ";
+            c++;
+        }
     }
     cout<<endl;
     cout<<endl;
@@ -128,12 +133,14 @@ int main(){
     //Ejercicio 9
     int anio;
     cout<<"Ejercicio 9"<<endl;
-    cout<<"Ingrese un año : ";cin>>anio;
-    if(!(anio%4)||!(anio%400)&&(anio%100))
-        cout<<"El anio es bisiesto"<<endl;
-    else{
-        cout<<"El anio no es bisiesto"<<endl;
+    cout<<"Ingrese un anio : ";cin>>anio;
+    if(!(anio%4) && (anio%100) || !(anio%400)){
+         cout<<"El anio es bisiesto ";
+    }else{
+         cout<<"El anio no es bisiesto ";
     }
+
+    cout<<endl;
     cout<<endl;
 
     //Ejercicio 10
