@@ -1,6 +1,7 @@
 #ifndef ARRINT_H
 #define ARRINT_H
-
+#include <iostream>
+using namespace std;
 
 class arrInt{
         int *arr;

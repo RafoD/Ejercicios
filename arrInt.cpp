@@ -14,6 +14,9 @@ arrInt::arrInt(){
 arrInt::arrInt(int size){
     this->size = size;
     arr = new int[size];
+    for(int i=0;i<size;i++){
+        arr[i]=0;
+    }
 }
 arrInt::arrInt(int arr1[],int size){
     this->size = size;
@@ -25,11 +28,12 @@ arrInt::~arrInt(){
     delete []arr;
 }
 void arrInt::insertar(int elemento){
-    int *tmp = new int[size++];
-    for(int i=0;i<elemento;i++){
+    int *tmp = new int[size+1];
+    for(int i=0;i<size;i++){
         tmp[i]=arr[i];
     }
-    arr[size-1] = elemento;
+    size++;
+    tmp[size-1] = elemento;
     delete [] arr;
     arr = tmp;
 }
@@ -37,12 +41,15 @@ void arrInt::insertar(int elemento,int indice){
     arr[indice] = elemento;
 }
 void arrInt::eliminar(int indice){
-    int *tmp = new int[size--];
+    int *tmp = new int[size-1];
     for(int i=0; i<size;i++){
-        if(i>=indice)
+        if(i>=indice){
             tmp[i] = arr[i+1];
+            continue;
+        }
         tmp[i] = arr[i];
     }
+    size--;
     delete[]arr;
     arr = tmp;
 }
@@ -53,7 +60,7 @@ void arrInt::vaciar(){
 int arrInt::menor(){
     int m = arr[0];
     for(int i=1;i<size; i++){
-        m>arr[i]? m = m : m = arr[i];
+        m<arr[i]? m = m : m = arr[i];
     }
     return m;
 }
@@ -79,7 +86,7 @@ int arrInt::mayorP(){
     for(int i=0;i<size;i++){
         if(primo(arr[i])){
             M = arr[i];
-            for(int j=i;j<size; j++){
+            for(int j=i+1;j<size; j++){
                 M>arr[j]&&primo(arr[j])? M = M : M = arr[j];
             }
             return M;
@@ -93,25 +100,35 @@ int arrInt::menorP(){
     for(int i=0;i<size;i++){
         if(primo(arr[i])){
             m = arr[i];
-            for(int j=i;j<size; j++){
-                m>arr[j]&&primo(arr[j])? m = m : m = arr[j];
+            for(int j=i+1;j<size; j++){
+                m<arr[j]&&primo(arr[j])? m : m = arr[j];
             }
+            return m;
         }
     }
-    return m;
 }
 void arrInt::ordenar(){
     for(int i=0;i<size;i++){
-        for(int j=i+1;i<size;i++){
-            int tmp = arr[i];
-            arr[i]=arr[j];
-            arr[j]=tmp;
+        for(int j=i+1;j<size;j++){
+            if(arr[i]>arr[j]){
+                int tmp = arr[i];
+                arr[i]=arr[j];
+                arr[j]=tmp;
+            }
         }
     }
 }
 void arrInt::invertir(){
-    for(int i=0;i<size;i++){
-        int izq = arr[i];
+    int j = size-1;
+    for(int i=0;i<size/2;i++,j--){
+        int tmp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=tmp;
     }
 }
-void arrInt::mostrar();
+void arrInt::mostrar(){
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
